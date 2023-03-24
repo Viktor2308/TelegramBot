@@ -33,4 +33,7 @@ build/
 .vscode/
 
 ### Properties ###
-/src/main/resources/config.properties
+/src/main/resources/com/project/myFirstTGBOT/config/config.properties
+/src/main/resources/application.properties
+/src/main/resources/botConfig.properties
+/src/main/resources/botConfig.properties
