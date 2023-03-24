@@ -11,7 +11,7 @@ Postgres
 lombok
 
 Telegram bot, which can receive messages from the User in the format:
-02/02/2023 18:00 Do homework.
+02/02/2023 18:00 Do homework
 and send the User a message with the text: “Do homework” at 18:00 on February 2, 2023.
 
 ## Configure Applications
