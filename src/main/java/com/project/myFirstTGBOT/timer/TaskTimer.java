@@ -22,8 +22,7 @@ public class TaskTimer {
     public void task() {
         taskRepository.findAllByTaskDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES))
                 .forEach(task -> {
-                    telegramBot.execute(
-                            new SendMessage(task.getChatId(), task.getMessage()));
+                    telegramBot.execute(new SendMessage(task.getChatId(), task.getMessage()));
                     taskRepository.delete(task);
                 });
 
