@@ -10,7 +10,6 @@ import com.project.myFirstTGBOT.entity.Task;
 import com.project.myFirstTGBOT.service.TaskService;
 import jakarta.annotation.Nullable;
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -34,7 +33,7 @@ public class TelegramBotUpdateListener implements UpdatesListener {
     private final TelegramBot telegramBot;
     private final TaskService taskService;
     private final Pattern pattern = Pattern.compile(PATTERN_DATE_TIME_TEXT);
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMATTER_DATE_TIME);
 
 
     @PostConstruct
@@ -66,6 +65,7 @@ public class TelegramBotUpdateListener implements UpdatesListener {
                             task.setMessage(textMessage);
                             task.setTaskDateTime(dateTime);
                             taskService.save(task);
+                            sendMessage(chatId, CORRECT_TASK + dateTime.format(formatter));
                         }
                     } else {
                         sendMessage(chatId, NO_CORRECT_MESSAGE);
