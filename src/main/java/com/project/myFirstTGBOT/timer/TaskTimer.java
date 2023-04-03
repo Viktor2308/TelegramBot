@@ -2,7 +2,7 @@ package com.project.myFirstTGBOT.timer;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
-import com.project.myFirstTGBOT.repository.TaskRepository;
+import com.project.myFirstTGBOT.repository.ReminderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Controller
 public class TaskTimer {
 
-    private final TaskRepository taskRepository;
+    private final ReminderRepository taskRepository;
     private final TelegramBot telegramBot;
 
     @Scheduled(fixedDelay = 1, timeUnit = TimeUnit.MINUTES)

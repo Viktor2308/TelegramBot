@@ -5,7 +5,7 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
-import com.project.myFirstTGBOT.service.TaskService;
+import com.project.myFirstTGBOT.service.TaskRepositoryService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +33,7 @@ class TelegramBotUpdateListenerTest {
     private TelegramBot telegramBot;
 
     @Mock
-    private TaskService taskService;
+    private TaskRepositoryService taskService;
 
     @InjectMocks
     private TelegramBotUpdateListener telegramBotUpdateListener;
@@ -47,14 +47,13 @@ class TelegramBotUpdateListenerTest {
 
         when(telegramBot.execute(any())).thenReturn(sendResponse);
 
-
         telegramBotUpdateListener.process(Collections.singletonList(update));
 
         ArgumentCaptor<SendMessage> argumentCaptor = ArgumentCaptor.forClass(SendMessage.class);
         Mockito.verify(telegramBot).execute(argumentCaptor.capture());
         SendMessage actual = argumentCaptor.getValue();
 
-        Assertions.assertThat(actual.getParameters().get("chat_id")).isEqualTo(update.message().chat().id());
+        Assertions.assertThat(actual.getParameters().get("chat_id")).isEqualTo(update.message().chat(). id());
         Assertions.assertThat(actual.getParameters().get("text")).isEqualTo(START_MESSAGE);
 
     }
